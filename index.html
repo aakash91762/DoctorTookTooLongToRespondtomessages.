@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <title> </title>
+  </head>
+  <link href="https://fonts.googleapis.com/css?family=Inter" rel="stylesheet" />
+
+  <body style="background-color: #eeeeee">
+    <style>
+      body {
+        font-family: "Inter";
+      }
+
+      input {
+        height: 2em;
+        width: 20em;
+        vertical-align: middle;
+      }
+
+      label {
+        color: black;
+      }
+
+      p {
+        text-align: justify;
+      }
+
+      .container {
+        width: 95%;
+        background-color: #eeeeee;
+        font-size: 12px;
+        text-align: left;
+      }
+
+      .input {
+        margin: 5px 0px;
+        padding: 15px 10px;
+        border: none;
+        border: none;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 5px;
+        border: 1px solid #eeeeee;
+        outline: 0;
+        height: 25px;
+        width: 100%;
+        font-size: 12px;
+      }
+
+      .custom-select {
+        margin: 5px 0px;
+        padding: 5px 10px;
+        /* border: none; */
+        border-radius: 5px;
+        border: 1px solid #eeeeee;
+        /* outline: 0; */
+        height: 30px;
+        width: 100%;
+        font-size: 12px;
+        font-family: "Inter";
+      }
+
+      .input:focus {
+        border: 1px solid #dd0150;
+      }
+
+      .custom-select:focus {
+        border: 1px solid #dd0150;
+      }
+
+      .submit {
+        background-color: #dd0150;
+        padding: 15px 15px 15px 15px;
+        width: 100%;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        color: white;
+        height: 45px;
+      }
+
+      .submit:hover {
+        background-color: #f74586;
+      }
+
+      .result {
+        font-weight: bold;
+        margin: 10px 0px 20px;
+      }
+
+      select option:checked {
+        background-color: #dd0150 !important;
+        color: white !important;
+      }
+    </style>
+    <center>
+      <div class="container">
+        <label id="header"></label> <br />
+        <br />
+
+        <form>
+          <label id="lname"></label> <br />
+          <input
+            class="input"
+            id="name"
+            type="text"
+            value=""
+            name="name"
+            required
+          />
+          <div id="rname" class="result"></div>
+
+          <label id="lmobile"></label> <br />
+          <input
+            class="input"
+            id="mobile"
+            type="tel"
+            pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+            name="mobile"
+            size="15"
+            value=""
+            required
+          />
+          <div id="rmobile" class="result"></div>
+
+          <label id="lemail"></label> <br />
+          <input
+            class="input"
+            id="email"
+            type="email"
+            value=""
+            name="email"
+            size="15"
+            required
+          />
+          <div id="remail" class="result"></div>
+
+          <label id="lOrderID"></label> <br />
+          <input
+            class="input"
+            id="OrderID"
+            type="text"
+            value=""
+            name="OrderID"
+            required
+          />
+          <div id="rOrderID" class="result"></div>
+
+          <label id="lissue"></label><br />
+          <input
+            class="custom-select"
+            id="issue"
+            type="text"
+            name="issue"
+            value=""
+            required
+          />
+          <div id="rissue" class="result"></div>
+
+          <input type="hidden" id="language" name="language" value="id" />
+          <button id="submit" class="submit"></button>
+        </form>
+      </div>
+    </center>
+    <script type="text/javascript">
+      // $(document).ready(function () {
+      let params = new URLSearchParams(window.location.search);
+      var language = params.get("language");
+      var mobile = params.get("mobile");
+      var email = params.get("email");
+      var name = params.get("name");
+      var OrderID = params.get("OrderID");
+      var issue = params.get("issue");
+      // var other = params.get('other')
+      //new code by aakash
+      if (OrderID) {
+        document.getElementById("OrderID").setAttribute("value", OrderID);
+      }
+      //
+
+      console.log({ issue, language });
+      if (language == "id") {
+        document.getElementById("name").placeholder = "Nama";
+        document.getElementById("email").placeholder = "Alamat Email Aktif";
+        document.getElementById("mobile").placeholder =
+          "No. Telepon yang Terdaftar";
+          document.getElementById("OrderID").placeholder =
+          "ID Konsultasi";
+          document.getElementById("issue").placeholder =
+          "Jelaskan detail kendalamu";
+
+
+
+        document.getElementById("header").innerHTML =
+          "Lengkapi informasi berikut untuk melaporkan masalah.";
+        document.getElementById("lname").innerHTML = "Nama:";
+        document.getElementById("lemail").innerHTML = "Alamat Email Aktif:";
+        document.getElementById("lmobile").innerHTML = "No. Telepon yang Terdaftar:";
+        document.getElementById("lOrderID").innerHTML = "ID Konsultasi:";
+        document.getElementById("lissue").innerHTML = "Jelaskan detail kendalamu";
+        document.getElementById("submit").innerHTML = "Kirim";
+        let x = document.getElementById("language");
+        x.setAttribute("value", "id");
+      } else {
+        document.getElementById("name").placeholder = "Name";
+        document.getElementById("email").placeholder = "Active Email ID:";
+        document.getElementById("mobile").placeholder =
+          "Registered Mobile Number:";
+          document.getElementById("OrderID").placeholder =
+          "Order ID";
+          document.getElementById("issue").placeholder =
+          "Tell us the details";
+        document.getElementById("header").innerHTML =
+          "Please share the information below to report the issue.";
+        document.getElementById("lname").innerHTML = "Name";
+        document.getElementById("lemail").innerHTML = "Active email ID";
+        document.getElementById("lOrderID").innerHTML = "Order ID:";
+        document.getElementById("lissue").innerHTML = "Tell us the details:";
+        document.getElementById("lmobile").innerHTML = "Mobile Number";
+        document.getElementById("submit").innerHTML = "Confirm";
+        let x = document.getElementById("language");
+        x.setAttribute("value", "en");
+      }
+
+      if (name && mobile && email && issue && OrderID) {
+        let n = document.getElementById("name");
+        let m = document.getElementById("mobile");
+        let e = document.getElementById("email");
+        let c = document.getElementById("issue");
+        let o = document.getElementById("OrderID");
+        let s = document.getElementById("submit");
+        n.setAttribute("type", "hidden");
+        m.setAttribute("type", "hidden");
+        e.setAttribute("type", "hidden");
+        o.setAttribute("type", "hidden");
+        c.hidden = true;
+        s.style.visibility = "hidden";
+        document.getElementById("rname").innerHTML = name;
+        document.getElementById("rmobile").innerHTML = mobile;
+        document.getElementById("remail").innerHTML = email;
+        document.getElementById("rissue").innerHTML = issue;
+        document.getElementById("rOrderID").innerHTML = OrderID;
+        n.setAttribute("value", name);
+        m.setAttribute("value", mobile);
+        e.setAttribute("value", email);
+        c.setAttribute("value", issue);
+        o.setAttribute("value", OrderID);
+        let sendData = { name, mobile, email, OrderID, issue };
+        myFunction(sendData);
+      }
+
+      function myFunction(sendData) {
+        console.log(sendData);
+        let data = JSON.stringify(sendData);
+        window.parent.postMessage(
+          JSON.stringify({
+            event_code: "ym-client-event",
+            data: JSON.stringify({
+              event: {
+                code: new Date().getTime().toString(),
+                data,
+              },
+            }),
+          }),
+          "*"
+        );
+
+        console.log(
+          JSON.stringify({
+            event_code: "ym-client-event",
+            data: JSON.stringify({
+              event: {
+                code: new Date().getTime().toString(),
+                data,
+              },
+            }),
+          })
+        );
+      }
+
+    </script>
+  </body>
+</html>
